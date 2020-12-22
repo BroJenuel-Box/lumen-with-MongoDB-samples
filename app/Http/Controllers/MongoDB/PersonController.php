@@ -26,7 +26,6 @@ class PersonController extends Controller
     }
 
     public function create_person(Request $request) {
-        // Use of Redis cache
         $data = $this->person_model->person_create($request);
 
         return $data;
