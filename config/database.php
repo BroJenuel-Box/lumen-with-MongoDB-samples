@@ -27,6 +27,17 @@ return [
                 'db' => env('MONGO_AUTHDATABASE', '') //Sets the auth DB
             )
         ),
+        'utalk_server' => array(
+            'driver'   => 'mongodb',
+            'host'     => env('UTALK_MONGO_HOST', 'localhost'),
+            'port'     => env('UTALK_MONGO_PORT', 27017),
+            'username' => env('UTALK_MONGO_USERNAME', ''),
+            'password' => env('UTALK_MONGO_PASSWORD', ''),
+            'database' => env('UTALK_MONGO_DATABASE', ''),
+            'options' => array(
+                'db' => env('UTALK_MONGO_AUTHDATABASE', '') //Sets the auth DB
+            )
+        ),
     ],
     'migrations' => 'migrations',
 ];

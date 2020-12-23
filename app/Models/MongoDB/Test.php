@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\MongoDB;
 
 use Carbon\Carbon;
@@ -9,19 +8,10 @@ use \MongoDB\BSON\UTCDateTime as DateTime;
 
 class Test extends Model
 {
-    /**
-     * Collection for Model
-     *
-     * @var String
-     */
     protected $connection = 'mongodb';
     protected $collection = 'tests';
     protected $fillable = ["title", "des", "date"];
-    /**
-     * Connection for model
-     *
-     * @var type
-     */
+
     protected $dates = ['date'];
 
     public function create_test($request) {

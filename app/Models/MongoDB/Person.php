@@ -76,6 +76,6 @@ class Person extends Eloquent {
             'car_name' => $request->input('car_name')
         ]);
 
-        return $person;
+        return $person->my_cars()->get();
     }
 }

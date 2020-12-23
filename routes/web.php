@@ -31,4 +31,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('set/person/information', 'MongoDB\PersonController@set_information');
     $router->post('add/person/book', 'MongoDB\PersonController@addBooks');
     $router->post('add/person/car', 'MongoDB\PersonController@add_to_car');
+
+    // coz lessons
+    $router->get('get/lesson/changes', 'CozLesson\CozLessons@get_cozlesson_changes');
 });
