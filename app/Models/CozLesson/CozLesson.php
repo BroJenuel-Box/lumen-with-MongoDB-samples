@@ -32,7 +32,7 @@ class CozLesson extends Eloquent {
         $lesson = CozLesson::find($request->input('id'));
         $data  = $lesson->coz_lesson_changes()->get();
 
-        return $data;   
+        return $data ? $data : false;   
     }
 
 }

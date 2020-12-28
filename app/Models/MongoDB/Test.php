@@ -20,6 +20,7 @@ class Test extends Model
         return $data ? $data : false;
     }
 
+    // ito is using skip and take to get pagination using the right query provided by the library
     public function get_tests($request) {
         $default_limit = 10;
 
@@ -31,9 +32,10 @@ class Test extends Model
         return $data ? $data : false;
     }
 
+    // ito is for integrating searching data in between dates
     public function get_dates_inbetween($request) {
 
-        $start = new DateTime(Carbon::parse($request->input('date_from')));
+        $start = new DateTime(Carbon::parse($request->input('date_from'))); // we use the use \MongoDB\BSON\UTCDateTime as DateTime; to make this work here.
         $to = new DateTime(Carbon::parse($request->input('date_to')));
 
         $data = Test::whereBetween('date', array($start, $to))->get();

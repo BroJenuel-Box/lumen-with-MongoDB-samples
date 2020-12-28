@@ -10,19 +10,24 @@ class CozLessonChanges extends Eloquent {
     protected $collection = 'coz_lesson_changes'; //pangalan ng table
 
 
-    public function get_cozlesson_changes($request) {
+    public function get_cozlesson_changes($request, $lesson_ids = []) {
 
         $limit = $request->has('limit') ? (int)$request->input('limit') : 10;
         $skip = $request->has('page') ? ($limit * (int)$request->input('page')) - ($limit) : 0;
 
-        $data = CozLessonChanges::where(function($query) use ($request) {
+        $data = CozLessonChanges::where(function($query) use ($request, $lesson_ids) {
 
-            //find lesson id
-            // if ($request->has('lesson_id'))
-            //     $query->where('lesson_id',new \MongoDB\BSON\ObjectId($request->input('lesson_id')));
-            
-            if ($request->has('lesson_id'))
-                $query->whereIn('lesson_id', [new \MongoDB\BSON\ObjectId('5fdd41cfc8c832ba57cdb3a6'), new \MongoDB\BSON\ObjectId('5fd84e467f180d5db02be90f')]);
+            if ($lesson_ids) {
+
+                $setLessonIds = function($lesson_id) {
+                    return new \MongoDB\BSON\ObjectId($lesson_id);
+                };
+
+                $lesson_ids = array_map($setLessonIds, $lesson_ids);
+
+                $query->whereIn('lesson_id', $lesson_ids);
+            }
+                
 
             $query->whereNotNull('lesson_id');
 

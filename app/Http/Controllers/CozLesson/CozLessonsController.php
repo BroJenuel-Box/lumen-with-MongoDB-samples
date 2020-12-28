@@ -29,7 +29,9 @@ class CozLessonsController extends Controller
     }
 
     public function get_cozlesson_changes(Request $request) {
-        $data = $this->cozLessonChanges_model->get_cozlesson_changes($request);
+        // getting array of Ids
+        if ($request->has('lesson_ids'))
+            $data = $this->cozLessonChanges_model->get_cozlesson_changes($request, $request->input('lesson_ids'));
 
         return $data;
     }
@@ -37,6 +39,6 @@ class CozLessonsController extends Controller
     public function get_change_lesson(Request $request) {
         $data = $this->cozLesson_model->getLessonChanges($request);
 
-        return json_encode($data);
+        return json_encode($data ? $data : "No Data");
     }
 }
