@@ -17,6 +17,8 @@ class CozLesson extends Eloquent {
     public function coz_lesson_changes()
     {
         // Note: if the field in a different 
+        // NOTE: according to the library this is applicable only for string foreign keys, cant be available for
+        // Object Id foreign keys.
         return $this->hasMany(CozLessonChanges::class, 'lesson_id');
     }
 
