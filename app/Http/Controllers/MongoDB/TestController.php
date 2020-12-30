@@ -19,21 +19,27 @@ class TestController extends Controller
         $this->test_model = new Test;
     }
 
-    function create_test(Request $request) {
+    public function create_test(Request $request) {
         $create_data = $this->test_model->create_test($request);
 
-        return json_encode($create_data);
+        return response()->json($create_data);
     }
 
     function get_tests(Request $request) {
         $data = $this->test_model->get_tests($request);
 
-        return json_encode($data);
+        return response()->json($data);
     }
 
     function get_tests_with_dates(Request $request) {
         $data = $this->test_model->get_dates_inbetween($request);
 
-        return json_encode($data);
+        return response()->json($data);
+    }
+
+    function delete_test(Request $request) {
+        $test = $this->test_model->delete_test($request);
+
+        return $test ? 'Deleted' : 'Not Deleted';
     }
 }

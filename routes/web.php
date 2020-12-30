@@ -20,8 +20,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     // List of all Samples
-    $router->get('create/test', 'MongoDB\TestController@create_test');
+    $router->post('create/test', 'MongoDB\TestController@create_test');
     $router->get('get/test', 'MongoDB\TestController@get_tests');
+    $router->delete('delete/test', 'MongoDB\TestController@delete_test');
     $router->get('get/test/date', 'MongoDB\TestController@get_tests_with_dates');
 
 

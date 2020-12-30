@@ -20,9 +20,17 @@ class Test extends Model
         return $data ? $data : false;
     }
 
+    public function delete_test($request) {
+        if (!$request->has('id'))
+            return false;
+        $test = Test::find($request->input('id'));
+        if ($test->delete())
+            return true;
+    }
+
     // ito is using skip and take to get pagination using the right query provided by the library
     public function get_tests($request) {
-        $default_limit = 10;
+        $default_limit = 50;
 
         $data = Test::skip($request->input('offset') ? $request->input('offset') : 0)
         ->take($request->input('limit') ? $request->input('limit') :  $default_limit)
